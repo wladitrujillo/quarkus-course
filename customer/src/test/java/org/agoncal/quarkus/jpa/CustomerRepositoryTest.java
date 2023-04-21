@@ -23,7 +23,7 @@ public class CustomerRepositoryTest {
         repository.persist(customer);
         assertNotNull(customer.getId());
 
-        repository.findById(customer.getId());
+        customer = repository.findById(customer.getId());
         assertEquals("firstName", customer.getFirstName());
     }
 }

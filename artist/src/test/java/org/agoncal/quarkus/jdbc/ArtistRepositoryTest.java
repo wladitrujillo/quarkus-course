@@ -24,7 +24,7 @@ public class ArtistRepositoryTest {
         repository.persist(artist);
         assertNotNull(artist.getId());
 
-        repository.findById(artist.getId());
+        artist = repository.findById(artist.getId());
         assertEquals("name", artist.getName());
     }
 
