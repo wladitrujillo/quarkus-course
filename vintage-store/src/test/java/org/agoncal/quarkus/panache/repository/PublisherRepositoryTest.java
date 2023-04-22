@@ -17,12 +17,20 @@ public class PublisherRepositoryTest {
     @TestTransaction
     public void testCreateAndFindAPublisher() throws SQLException {
 
+        long count = Publisher.count();
+        int listAll = Publisher.listAll().size();
+        assertEquals(count, listAll);
         Publisher publisher = new Publisher("name");
         Publisher.persist(publisher);
         assertNotNull(publisher.id);
 
+        assertEquals(count + 1, Publisher.count());
+
         publisher = Publisher.findById(publisher.id);
         assertEquals("name", publisher.name);
+
+        Publisher.deleteById(publisher.id);
+        assertEquals(count, Publisher.count());
     }
 
 }
