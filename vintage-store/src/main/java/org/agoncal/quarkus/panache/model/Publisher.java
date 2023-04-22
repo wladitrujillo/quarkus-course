@@ -1,4 +1,4 @@
-package org.agoncal.quarkus.panache;
+package org.agoncal.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Entity;

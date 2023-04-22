@@ -34,6 +34,18 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>org.agoncal.course.quarkus.orm</groupId>
+      <artifactId>artist</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-jdbc-mysql</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm-panache</artifactId>
     </dependency>

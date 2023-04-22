@@ -1,10 +1,11 @@
-package org.agoncal.quarkus.jdbc;
+package org.agoncal.quarkus.panache.repository;
 
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
+import org.agoncal.quarkus.jdbc.Artist;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
-
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,6 +19,7 @@ public class ArtistRepositoryTest {
     ArtistRepository repository;
 
     @Test
+    @TestTransaction
     public void testCreateAndFindAnArtist() throws SQLException {
 
         Artist artist = new Artist("name", "bio");

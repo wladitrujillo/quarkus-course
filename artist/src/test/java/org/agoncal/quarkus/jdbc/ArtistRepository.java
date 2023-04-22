@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.Random;
 
 @ApplicationScoped
-public class ArtistsRepository {
+public class ArtistRepository {
 
     @Inject
     DataSource dataSource;
