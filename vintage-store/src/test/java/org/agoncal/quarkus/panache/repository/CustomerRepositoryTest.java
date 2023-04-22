@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class CustomerRepositoryTest {
@@ -20,6 +19,7 @@ public class CustomerRepositoryTest {
     @TestTransaction
     public void testCreateAndFindAnArtist() throws SQLException {
 
+        assertTrue(repository.listAllDans().size() <= repository.count());
         Customer customer = new Customer("firstName", "lastName", "bio");
         repository.persist(customer);
         assertNotNull(customer.getId());

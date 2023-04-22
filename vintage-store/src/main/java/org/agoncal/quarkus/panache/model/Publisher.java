@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -40,5 +42,13 @@ public class Publisher extends PanacheEntity {
 
     public Publisher(String name) {
         this.name = name;
+    }
+
+    public static Optional<Publisher> findByName(String name) {
+        return Publisher.find("name", name).firstResultOptional();
+    }
+
+    public static List<Publisher> findContainName(String name) {
+        return Publisher.list("name like ?1", "%" + name + "%");
     }
 }

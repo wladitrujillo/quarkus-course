@@ -5,10 +5,10 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.agoncal.quarkus.panache.model.Publisher;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.EntityNotFoundException;
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class PublisherRepositoryTest {
@@ -27,7 +27,9 @@ public class PublisherRepositoryTest {
         assertEquals(count + 1, Publisher.count());
 
         publisher = Publisher.findById(publisher.id);
+        publisher = Publisher.findByName(publisher.name).orElseThrow(EntityNotFoundException::new);
         assertEquals("name", publisher.name);
+        assertTrue(Publisher.findContainName("name").size() >= 1);
 
         Publisher.deleteById(publisher.id);
         assertEquals(count, Publisher.count());
