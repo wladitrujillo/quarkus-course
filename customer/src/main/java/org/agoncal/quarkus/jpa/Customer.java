@@ -1,37 +1,40 @@
 package org.agoncal.quarkus.jpa;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.Instant;
 
 /**
  * Example JPA entity.
- *
+ * <p>
  * To use it, get access to a JPA EntityManager via injection.
- *
+ * <p>
  * {@code
- *     @Inject
- *     EntityManager em;
  *
- *     public void doSomething() {
- *         MyEntity entity1 = new MyEntity();
- *         entity1.field = "field-1";
- *         em.persist(entity1);
- *
- *         List<MyEntity> entities = em.createQuery("from MyEntity", MyEntity.class).getResultList();
- *     }
+ * @Inject EntityManager em;
+ * <p>
+ * public void doSomething() {
+ * MyEntity entity1 = new MyEntity();
+ * entity1.field = "field-1";
+ * em.persist(entity1);
+ * <p>
+ * List<MyEntity> entities = em.createQuery("from MyEntity", MyEntity.class).getResultList();
+ * }
  * }
  */
 @Entity
+@Table(name = "t_customers")
 public class Customer {
     @Id
     @GeneratedValue
     private Long id;
 
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
+    @Column(name = "e_mail", nullable = false)
     private String email;
+    @Column(name = "created_date", nullable = false)
     private Instant createdDate = Instant.now();
 
     public Customer() {
