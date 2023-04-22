@@ -1,6 +1,7 @@
 package org.agoncal.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.agoncal.quarkus.jdbc.Artist;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -8,7 +9,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "t_items")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item extends PanacheEntity {
     @Column(length = 100, nullable = false)
     public String title;
@@ -18,4 +19,9 @@ public class Item extends PanacheEntity {
     public BigDecimal price;
     @Column(name = "created_date", nullable = false)
     public Instant createdDate = Instant.now();
+
+    @ManyToOne
+    @JoinColumn(name = "artist_fk")
+    public Artist artist;
+
 }

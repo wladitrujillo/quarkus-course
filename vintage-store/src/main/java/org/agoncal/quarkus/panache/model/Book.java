@@ -16,4 +16,7 @@ public class Book extends Item {
     @Column(length = 20)
     @Enumerated(EnumType.STRING)
     public Language language;
+    @ManyToOne
+    @JoinColumn(name = "publisher_fk")
+    public Publisher publisher;
 }
