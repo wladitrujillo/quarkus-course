@@ -10,7 +10,7 @@ public class Book extends Item {
     @Column(length = 15)
     public String isbn;
     @Column(name = "nb_of_pages")
-    public int nbOfPage;
+    public int nbOfPages;
     @Column(name = "publication_date")
     public LocalDate publicationDate;
     @Column(length = 20)

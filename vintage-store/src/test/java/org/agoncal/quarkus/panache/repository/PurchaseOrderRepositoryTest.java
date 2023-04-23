@@ -32,7 +32,7 @@ public class PurchaseOrderRepositoryTest {
         //Create a Book
         Book book = new Book();
         book.title = "title of the book";
-        book.nbOfPage = 500;
+        book.nbOfPages = 500;
         book.language = Language.ENGLISH;
         book.price = new BigDecimal(10);
         book.isbn = "isbn";
