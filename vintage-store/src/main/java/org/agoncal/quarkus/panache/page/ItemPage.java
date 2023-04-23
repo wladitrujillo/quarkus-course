@@ -33,10 +33,10 @@ public class ItemPage {
 
     @GET
     @Path("/books")
-    public TemplateInstance showBoookAllBooks(@QueryParam("query") String query,
-                                              @QueryParam("sort") @DefaultValue("id") String sort,
-                                              @QueryParam("page") @DefaultValue("0") Integer pageIndex,
-                                              @QueryParam("size") @DefaultValue("100") Integer pageSize) {
+    public TemplateInstance showBookAllBooks(@QueryParam("query") String query,
+                                             @QueryParam("sort") @DefaultValue("id") String sort,
+                                             @QueryParam("page") @DefaultValue("0") Integer pageIndex,
+                                             @QueryParam("size") @DefaultValue("100") Integer pageSize) {
         return Templates.books(Book.find(query, Sort.by(sort)).page(pageIndex, pageSize).list())
                 .data("query", query)
                 .data("sort", sort)
@@ -52,7 +52,14 @@ public class ItemPage {
 
     @GET
     @Path("/cds")
-    public TemplateInstance showBoookAllCDs() {
-        return Templates.cds(CD.listAll());
+    public TemplateInstance showBookAllCDs(@QueryParam("query") String query,
+                                            @QueryParam("sort") @DefaultValue("id") String sort,
+                                            @QueryParam("page") @DefaultValue("0") Integer pageIndex,
+                                            @QueryParam("size") @DefaultValue("100") Integer pageSize) {
+        return Templates.cds(CD.find(query, Sort.by(sort)).page(pageIndex, pageSize).list())
+                .data("query", query)
+                .data("sort", sort)
+                .data("pageIndex", pageIndex)
+                .data("pageSize", pageSize);
     }
 }
